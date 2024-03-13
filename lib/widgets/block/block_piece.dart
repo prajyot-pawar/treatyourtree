@@ -9,6 +9,7 @@ enum BlockType {
   Land,
   // Fire,
   Seed,
+  empty
 }
 
 class BlockPieceTYT {
@@ -21,16 +22,16 @@ class BlockPieceTYT {
   void genPieces() {
     switch (type) {
       case BlockType.Water:
-        positions = [-26, -16, -6, -5];
+        positions = [-26];
         break;
       case BlockType.Land:
-        positions = [-25, -15, -6, -5];
+        positions = [-25];
         break;
       // case BlockType.Fire:
       //   positions = [-36, -26, -16, -6];
       //   break;
       case BlockType.Seed:
-        positions = [-7, -6, -5, -4];
+        positions = [-7];
         break;
       default:
     }
@@ -203,5 +204,6 @@ const Map<BlockType, Color> typeColors = {
   BlockType.Land: Colors.green,
   // BlockType.Fire: Colors.red,
   BlockType.Seed: Colors.yellow,
+  BlockType.empty: Colors.black45,
 };
 

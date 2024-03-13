@@ -162,9 +162,12 @@ class _GameScreenState extends State<GameScreen> {
 
   void newPieceTYT(){
     Random rand=Random();
-    BlockType randomType=BlockType.values[rand.nextInt(BlockType.values.length)];
-    print("this is random type to be drawn $randomType");
-    BlockType randoType=BlockType.values[rand.nextInt(BlockType.values.length)];
+    // BlockType randomType=BlockType.values[rand.nextInt(BlockType.values.length)];
+    // print("this is random type to be drawn $randomType");
+
+    List<BlockType> nonEmptyBlockTypes = BlockType.values.where((type) => type != BlockType.empty).toList();
+
+    BlockType randoType=BlockType.values[rand.nextInt(nonEmptyBlockTypes.length)];
     currentPieceTYT=BlockPieceTYT(type: randoType);
     currentPieceTYT.genPieces();
     if(gameOver()==true){
@@ -306,14 +309,15 @@ class _GameScreenState extends State<GameScreen> {
                                             final BlockType? tetBlockType=gameBoard[currow][curcol];
                                             return (tetBlockType!=null)? Boxes(
                                               color: typeColors[tetBlockType],
-                                              blocktype: BlockType.Land,
+                                              blocktype: tetBlockType,
                                             ):null;
                                           }
 
                                           else{
                                             return Boxes(
-                                              color: const Color.fromARGB(255, 46, 37, 37),
-                                              blocktype: BlockType.Land,
+                                              color: const Color.fromARGB(
+                                                  255, 255, 95, 95),
+                                              blocktype: BlockType.empty,
                                             );
                                           }
 

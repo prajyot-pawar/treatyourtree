@@ -20,6 +20,8 @@ class Boxes extends StatelessWidget {
       //   return SvgPicture.asset("assets/images/FireElement_block.svg");
       case BlockType.Seed:
         return SvgPicture.asset("assets/images/SeedElement_block.svg");
+      case BlockType.empty:
+        return SvgPicture.asset("assets/images/SeedElement_block.svg");
       default:
         return Container(); // Return a default widget if type is not recognized
     }
