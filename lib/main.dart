@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute:AppRoutes.GAME,
+      initialRoute:AppRoutes.HOME,
       routes: {
         AppRoutes.SPLASH: (context) => const SplashScreen(),
         AppRoutes.HOME: (context) => const HomeScreen(),

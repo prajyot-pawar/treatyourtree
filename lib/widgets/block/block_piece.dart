@@ -5,6 +5,7 @@ int col=15;
 
 
 enum BlockType {
+
   Water,
   Land,
   // Fire,
@@ -36,6 +37,7 @@ class BlockPieceTYT {
       default:
     }
   }
+
   void pieceMove(Directions direction) {
     switch (direction) {
       case Directions.down:
