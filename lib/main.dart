@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:treatyourtree/pages/game/game_screen.dart';
 import 'package:treatyourtree/pages/home/home_screen.dart';
 
 import 'constants/routes.dart';
 import 'pages/splash/splash_screen.dart';
 
-void main() {
+Future<void> main() async {
+
+  await Hive.initFlutter();
+  var highbox = await Hive.openBox("HighScore_db");
   runApp(
     const ProviderScope(
       child: MyApp(),
@@ -20,10 +26,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute:AppRoutes.HOME,
+      initialRoute:AppRoutes.GAME,
       routes: {
         AppRoutes.SPLASH: (context) => const SplashScreen(),
         AppRoutes.HOME: (context) => const HomeScreen(),
+        AppRoutes.GAME: (context) =>  GameScreen(),
       },
     );
   }
