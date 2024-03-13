@@ -147,15 +147,22 @@ class _GameScreenState extends State<GameScreen> {
 
   void checkLanding(){
     if(collisionDet(Directions.down)){
-
       for(int i=0;i<currentPieceTYT.positions.length;i++){
         int currow =(currentPieceTYT.positions[i]/row).floor();
         int curcol =currentPieceTYT.positions[i]%row;
         if(currow>=0 && curcol>=0){
           gameBoard[currow][curcol]=currentPieceTYT.type;
+          if(gameBoard[currow][curcol] == BlockType.Seed && currow <13){
+            print("this is current row $currow");
+            print("this is current row ${currow+2}");
+            if( gameBoard[currow+1][curcol] == BlockType.Land && gameBoard[currow+2][curcol] == BlockType.Water )
+            {
+              score+=4;
+            }
+          }
+
         }
       }
-      score+=4;
       newPieceTYT();
     }
   }
@@ -250,7 +257,7 @@ class _GameScreenState extends State<GameScreen> {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(15),
                         child: Scaffold(
-                            backgroundColor: Color.fromRGBO(27, 18, 18, 1),
+                            backgroundColor:Color(0xFFFFF1BF),
                             body: SafeArea(
                               child: Column(
                                 children: [
@@ -266,6 +273,18 @@ class _GameScreenState extends State<GameScreen> {
                                               value==0?value=1:value=0;
                                             });
                                           },
+                                          onPanUpdate: (details) {
+                                            int sensitivity = 8;
+                                                    if (details.delta.dx > sensitivity) {
+                                                      moveRight;
+                                                      print("mnoving left");
+                                                    }
+
+                                                  if (details.delta.dx < sensitivity) {
+                                                    moveLeft;
+                                                    print("mnoving right");
+                                                  }
+                                            },
                                           child: Container(
                                               padding: EdgeInsets.all(10),
                                               decoration: BoxDecoration(
@@ -315,8 +334,7 @@ class _GameScreenState extends State<GameScreen> {
 
                                           else{
                                             return Boxes(
-                                              color: const Color.fromARGB(
-                                                  255, 255, 95, 95),
+                                              color: Colors.transparent,
                                               blocktype: BlockType.empty,
                                             );
                                           }

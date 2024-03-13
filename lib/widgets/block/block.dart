@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:treatyourtree/widgets/block/block_piece.dart';
@@ -21,7 +22,7 @@ class Boxes extends StatelessWidget {
       case BlockType.Seed:
         return SvgPicture.asset("assets/images/SeedElement_block.svg");
       case BlockType.empty:
-        return SvgPicture.asset("assets/images/SeedElement_block.svg");
+        return Container(height: 53 ,width: 48, decoration: BoxDecoration(borderRadius:BorderRadius.circular(10),color:color),);
       default:
         return Container(); // Return a default widget if type is not recognized
     }
