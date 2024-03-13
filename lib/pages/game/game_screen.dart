@@ -7,7 +7,7 @@ import '../../constants/db.dart';
 import '../../widgets/block/block.dart';
 import 'package:hive/hive.dart';
 
-import '../../widgets/block/block_Piece.dart';
+import '../../widgets/block/block_piece.dart';
 import '../../widgets/drawer/drawer.dart';
 
 List<List<BlockType?>> gameBoard = List.generate(
@@ -298,22 +298,22 @@ class _GameScreenState extends State<GameScreen> {
                                           if(currentPieceTYT.positions.contains(index)){
                                             return Boxes(
                                               color: currentPieceTYT.color,
-
+                                              blocktype: currentPieceTYT.type,
                                             );
                                           }
 
                                           else if(gameBoard[currow][curcol]!=null){
-                                            final BlockType? tetType=gameBoard[currow][curcol];
-                                            return (tetType!=null)? Boxes(
-                                              color: typeColors[tetType],
-                                              blocktype: tetType,
-                                            );
+                                            final BlockType? tetBlockType=gameBoard[currow][curcol];
+                                            return (tetBlockType!=null)? Boxes(
+                                              color: typeColors[tetBlockType],
+                                              blocktype: BlockType.Land,
+                                            ):null;
                                           }
 
                                           else{
                                             return Boxes(
                                               color: const Color.fromARGB(255, 46, 37, 37),
-
+                                              blocktype: BlockType.Land,
                                             );
                                           }
 

@@ -32,7 +32,7 @@ class Boxes extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
       ), 
-      child:_buildSvgForType(BlockType.Seed),
+      child:_buildSvgForType(blocktype),
     );
   }
 }
